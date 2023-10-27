@@ -7,7 +7,7 @@ module.exports = grammar({
 		automad: ($) =>
 			repeat1(choice($.variable, $.comment, $.text, $.statement)),
 
-		comment: () => token(seq('<#', repeat(/.|\s/), '#>')),
+		comment: () => token(/<#.*?#>/),
 
 		_name: () => /:?\w[\w\/_]*/,
 		_value: ($) =>
@@ -33,17 +33,17 @@ module.exports = grammar({
 											repeat(/\s/),
 											',',
 											repeat(/\s/),
-											$._value,
-										),
+											$._value
+										)
 									),
 									repeat(/\s/),
-									')',
-								),
-							),
+									')'
+								)
+							)
 						),
-						$.pipe_math,
-					),
-				),
+						$.pipe_math
+					)
+				)
 			),
 
 		string: () => /"(?:[^"\\\\]|\\\\.)+"|'(?:[^'\\\\]|\\\\.)+'/,
@@ -57,7 +57,7 @@ module.exports = grammar({
 				$.variable_name,
 				repeat($._pipe),
 				repeat(/\s/),
-				$.variable_close,
+				$.variable_close
 			),
 		variable_open: () => '@{',
 		variable_close: () => '}',
@@ -78,7 +78,7 @@ module.exports = grammar({
 				'else',
 				'with',
 				'else',
-				'end',
+				'end'
 			),
 
 		negation: () => choice('!', 'not'),
@@ -94,10 +94,10 @@ module.exports = grammar({
 							optional(seq($.negation, repeat(/\s/))),
 							$._value,
 							repeat(/\s/),
-							optional(seq($.operator, repeat(/\s/), $._value)),
-						),
-					),
-				),
+							optional(seq($.operator, repeat(/\s/), $._value))
+						)
+					)
+				)
 			),
 
 		key: () => /[\w_]+/,
@@ -110,23 +110,25 @@ module.exports = grammar({
 					$._keyValue,
 					repeat(seq(repeat(/\s/), ',', repeat(/\s/), $._keyValue)),
 					repeat(/\s/),
-					'}',
-				),
+					'}'
+				)
 			),
+
+		include: () => /[\w][\w\/\._]*\.php/,
 
 		statement: ($) =>
 			seq(
 				$.statement_open,
 				repeat(/\s/),
-				choice($._name, $.keyword),
+				choice($._name, $.keyword, $.include),
 				repeat(
 					seq(
 						repeat(/\s/),
-						choice($.expression, $.keyword, $.options),
-					),
+						choice($.expression, $.keyword, $.options)
+					)
 				),
 				repeat(/\s/),
-				$.statement_close,
+				$.statement_close
 			),
 		statement_open: () => '<@',
 		statement_close: () => '@>',
