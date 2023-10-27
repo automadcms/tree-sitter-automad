@@ -1,12 +1,12 @@
 (
 	[
 		(statement) @label
-		(keyword) @keyword
+		(keyword) @constructor
 		(expression) @type.builtin
 		(comment) @comment
 		(variable) @label
 		(variable_name) @variable.builtin
-		(pipe_function_name) @keyword
+		(pipe_function_name) @constructor
 		(number) @number
 		(key) @field
 		(boolean) @parameter
