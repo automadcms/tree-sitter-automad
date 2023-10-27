@@ -1,0 +1,19 @@
+========
+Comments
+========
+
+<# Some Comment #>
+@{ variable }
+<# Some Comment #>
+
+---
+
+(automad
+  (comment)
+  (variable
+    (variable_open)
+    (variable_name)
+    (variable_close))
+  (comment)
+  (text))
+

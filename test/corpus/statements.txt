@@ -1,3 +1,18 @@
+=======
+Include
+=======
+
+<@ some/file.php @>
+
+---
+
+(automad
+  (statement
+    (statement_open)
+    (include)
+    (statement_close))
+  (text))
+
 ========
 For Loop
 ========
