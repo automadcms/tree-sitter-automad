@@ -1,0 +1,4 @@
+[
+	(statement)
+	(variable)
+] @indent.begin

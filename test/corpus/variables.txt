@@ -1,0 +1,150 @@
+=====
+Basic
+=====
+
+@{ name }
+
+---
+
+(automad
+  (variable
+    (variable_open)
+    (variable_name)
+    (variable_close))
+  (text))
+
+=======
+Runtime
+=======
+
+@{ :name }
+
+---
+
+(automad
+  (variable
+    (variable_open)
+    (variable_name)
+    (variable_close))
+  (text))
+
+===========
+Inside Tags
+===========
+
+<span title="@{ title }">@{ :runtime }</span>
+
+---
+
+(automad
+  (text)
+  (variable
+    (variable_open)
+    (variable_name)
+    (variable_close))
+  (text)
+  (variable
+    (variable_open)
+    (variable_name)
+    (variable_close))
+  (text))
+
+
+====
+Math
+====
+
+@{ name | /2 | -3.1 | +1  }
+
+---
+
+(automad
+  (variable
+    (variable_open)
+    (variable_name)
+    (pipe_separator)
+    (pipe_math
+      (number))
+    (pipe_separator)
+    (pipe_math
+      (number))
+    (pipe_separator)
+    (pipe_math
+      (number))
+    (variable_close))
+  (text))
+
+======
+Filter
+======
+
+@{ name | def('test') | filter | filter (false, 10, 'string') | filter (@{ var | filter(true) } ) }
+
+---
+
+(automad
+  (variable
+    (variable_open)
+    (variable_name)
+    (pipe_separator)
+    (pipe_function_name)
+    (string)
+    (pipe_separator)
+    (pipe_function_name)
+    (pipe_separator)
+    (pipe_function_name)
+    (boolean)
+    (number)
+    (string)
+    (pipe_separator)
+    (pipe_function_name)
+    (variable
+      (variable_open)
+      (variable_name)
+      (pipe_separator)
+      (pipe_function_name)
+      (boolean)
+      (variable_close))
+    (variable_close))
+  (text))
+
+
+=========
+Multiline
+=========
+
+@{ name |
+  def('test') |
+  filter |
+  filter (false, 10, 'string') |
+  filter (@{ var | filter(true) } )
+}
+
+---
+
+(automad
+  (variable
+    (variable_open)
+    (variable_name)
+    (pipe_separator)
+    (pipe_function_name)
+    (string)
+    (pipe_separator)
+    (pipe_function_name)
+    (pipe_separator)
+    (pipe_function_name)
+    (boolean)
+    (number)
+    (string)
+    (pipe_separator)
+    (pipe_function_name)
+    (variable
+      (variable_open)
+      (variable_name)
+      (pipe_separator)
+      (pipe_function_name)
+      (boolean)
+      (variable_close))
+    (variable_close))
+  (text))
+
