@@ -1,7 +1,9 @@
 @{ name }
 
+<# Some Comment #>
 @{ :name }
 
+<# Some Comment #>
 <span title="@{ title }">@{ :runtime }</span>
 
 @{ name | /2 | -3.1 | +1  }
