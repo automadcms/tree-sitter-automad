@@ -135,6 +135,10 @@
           "named": true
         },
         {
+          "type": "include",
+          "named": true
+        },
+        {
           "type": "keyword",
           "named": true
         },
@@ -285,6 +289,10 @@
   {
     "type": "in",
     "named": false
+  },
+  {
+    "type": "include",
+    "named": true
   },
   {
     "type": "key",
