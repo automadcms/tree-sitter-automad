@@ -13,6 +13,51 @@ Basic
     (variable_close))
   (text))
 
+======
+Blocks
+======
+
+@{ +name }
+
+---
+
+(automad
+  (variable
+    (variable_open)
+    (variable_name)
+    (variable_close))
+  (text))
+
+=======
+Session
+=======
+
+@{ %name }
+
+---
+
+(automad
+  (variable
+    (variable_open)
+    (variable_name)
+    (variable_close))
+  (text))
+
+=====
+Query
+=====
+
+@{ ?name }
+
+---
+
+(automad
+  (variable
+    (variable_open)
+    (variable_name)
+    (variable_close))
+  (text))
+
 =======
 Runtime
 =======

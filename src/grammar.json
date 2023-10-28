@@ -51,7 +51,7 @@
     },
     "_name": {
       "type": "PATTERN",
-      "value": ":?[a-zA-Z][\\w\\/_]*"
+      "value": "[:?%+]?[a-zA-Z][\\w\\/_]*"
     },
     "_value": {
       "type": "PREC_RIGHT",

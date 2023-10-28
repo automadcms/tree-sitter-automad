@@ -9,7 +9,7 @@ module.exports = grammar({
 
 		comment: () => seq('<#', prec.right(repeat(/.|\s/)), '#>'),
 
-		_name: () => /:?[a-zA-Z][\w\/_]*/,
+		_name: () => /[:?%+]?[a-zA-Z][\w\/_]*/,
 		_value: ($) =>
 			prec.right(choice($.string, $.variable, $.number, $.boolean)),
 		_keyValue: ($) => seq($.key, ':', repeat(/\s/), $._value),
