@@ -3,6 +3,7 @@
 		(statement) @label
 		(keyword) @constructor
 		(expression) @type.builtin
+		(include) @type.builtin
 		(comment) @comment
 		(variable) @label
 		(variable_name) @variable.builtin
