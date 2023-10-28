@@ -7,7 +7,7 @@ module.exports = grammar({
 		automad: ($) =>
 			repeat1(choice($.variable, $.comment, $.text, $.statement)),
 
-		comment: () => token(/<#.*?#>/),
+		comment: () => seq('<#', prec.right(repeat(/.|\s/)), '#>'),
 
 		_name: () => /:?\w[\w\/_]*/,
 		_value: ($) =>

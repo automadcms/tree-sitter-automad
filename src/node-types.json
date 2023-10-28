@@ -27,6 +27,11 @@
     }
   },
   {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "expression",
     "named": true,
     "fields": {},
@@ -223,6 +228,10 @@
     "named": false
   },
   {
+    "type": "#>",
+    "named": false
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -255,11 +264,11 @@
     "named": false
   },
   {
-    "type": "boolean",
-    "named": true
+    "type": "<#",
+    "named": false
   },
   {
-    "type": "comment",
+    "type": "boolean",
     "named": true
   },
   {

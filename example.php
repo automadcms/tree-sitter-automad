@@ -1,6 +1,10 @@
 @{ name }
 
-<# Some Comment #>
+<# 
+
+Some Comment 
+
+#>
 @{ :name }
 
 <# Some Comment #>

@@ -26,11 +26,28 @@
       }
     },
     "comment": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "<#.*?#>"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "<#"
+        },
+        {
+          "type": "PREC_RIGHT",
+          "value": 0,
+          "content": {
+            "type": "REPEAT",
+            "content": {
+              "type": "PATTERN",
+              "value": ".|\\s"
+            }
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "#>"
+        }
+      ]
     },
     "_name": {
       "type": "PATTERN",
