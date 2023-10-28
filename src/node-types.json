@@ -328,6 +328,10 @@
     "named": true
   },
   {
+    "type": "snippet",
+    "named": false
+  },
+  {
     "type": "statement_close",
     "named": true
   },
@@ -361,6 +365,10 @@
   },
   {
     "type": "}",
+    "named": false
+  },
+  {
+    "type": "~",
     "named": false
   }
 ]

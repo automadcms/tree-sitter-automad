@@ -51,7 +51,7 @@
     },
     "_name": {
       "type": "PATTERN",
-      "value": ":?\\w[\\w\\/_]*"
+      "value": ":?[a-zA-Z][\\w\\/_]*"
     },
     "_value": {
       "type": "PREC_RIGHT",
@@ -355,7 +355,7 @@
         },
         {
           "type": "STRING",
-          "value": "else"
+          "value": "snippet"
         },
         {
           "type": "STRING",
@@ -559,6 +559,18 @@
           "name": "statement_open"
         },
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "~"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "REPEAT",
           "content": {
             "type": "PATTERN",
@@ -599,6 +611,10 @@
                 "members": [
                   {
                     "type": "SYMBOL",
+                    "name": "_name"
+                  },
+                  {
+                    "type": "SYMBOL",
                     "name": "expression"
                   },
                   {
@@ -620,6 +636,18 @@
             "type": "PATTERN",
             "value": "\\s"
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "~"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",

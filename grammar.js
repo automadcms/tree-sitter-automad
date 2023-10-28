@@ -9,7 +9,7 @@ module.exports = grammar({
 
 		comment: () => seq('<#', prec.right(repeat(/.|\s/)), '#>'),
 
-		_name: () => /:?\w[\w\/_]*/,
+		_name: () => /:?[a-zA-Z][\w\/_]*/,
 		_value: ($) =>
 			prec.right(choice($.string, $.variable, $.number, $.boolean)),
 		_keyValue: ($) => seq($.key, ':', repeat(/\s/), $._value),
@@ -75,7 +75,7 @@ module.exports = grammar({
 				'foreach',
 				'in',
 				'if',
-				'else',
+				'snippet',
 				'with',
 				'else',
 				'end'
@@ -119,15 +119,17 @@ module.exports = grammar({
 		statement: ($) =>
 			seq(
 				$.statement_open,
+				optional('~'),
 				repeat(/\s/),
 				choice($._name, $.keyword, $.include),
 				repeat(
 					seq(
 						repeat(/\s/),
-						choice($.expression, $.keyword, $.options)
+						choice($._name, $.expression, $.keyword, $.options)
 					)
 				),
 				repeat(/\s/),
+				optional('~'),
 				$.statement_close
 			),
 		statement_open: () => '<@',

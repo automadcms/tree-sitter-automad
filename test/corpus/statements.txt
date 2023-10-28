@@ -17,9 +17,9 @@ Include
 For Loop
 ========
 
-<@ for @{ start } to 10 @>
+<@~ for @{ start } to 10 ~@>
   <span>@{ :i }</span>
-<@ end @>
+<@~ end ~@>
 
 ---
 
@@ -193,6 +193,33 @@ Negation
   (statement
     (statement_open)
     (keyword)
+    (statement_close))
+  (text))
+
+=======
+Snippet
+=======
+
+<@ snippet test @>
+  <span>Content</span>
+<@ end @>
+
+<@ test @>
+
+---
+
+(automad
+  (statement
+    (statement_open)
+    (keyword)
+    (statement_close))
+  (text)
+  (statement
+    (statement_open)
+    (keyword)
+    (statement_close))
+  (statement
+    (statement_open)
     (statement_close))
   (text))
 
