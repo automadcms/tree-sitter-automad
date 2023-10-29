@@ -2,9 +2,9 @@
 
 Tree-Sitter grammar for [Automad](https://automad.org) templates.
 
-## Installation
+## Installation (Neovim)
 
-In order to enable syntax highlighting in Automad templates, the following two steps are required:
+In order to enable syntax highlighting in Automad templates when using [Neovim](https://neovim.io), the following two steps are required:
 
 ### Updating Tree-Sitter Config
 
