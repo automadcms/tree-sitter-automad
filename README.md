@@ -34,11 +34,11 @@ require('nvim-treesitter.configs').setup({
 ### Copying Queries
 
 After updating the Tree-Sitter config, the `queries` directory in this repository has to be copied to the
-Neovim config directory:
+Neovim config `after` directory:
 
 ```bash
 git clone https://github.com/automadcms/tree-sitter-automad.git
-cp -r ./tree-sitter-automad/queries ~/.config/nvim
+cp -r ./tree-sitter-automad/queries ~/.config/nvim/after/queries
 ```
 
 > Note that this assumes that you don't have already a `queries` directory in your Neovim config.
