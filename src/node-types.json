@@ -140,6 +140,10 @@
           "named": true
         },
         {
+          "type": "function",
+          "named": true
+        },
+        {
           "type": "include",
           "named": true
         },
@@ -290,6 +294,10 @@
   {
     "type": "foreach",
     "named": false
+  },
+  {
+    "type": "function",
+    "named": true
   },
   {
     "type": "if",

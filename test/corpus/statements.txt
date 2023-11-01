@@ -13,6 +13,24 @@ Include
     (statement_close))
   (text))
 
+=========
+Extension
+=========
+
+<@ Vendor/Package { key: "value" } @>
+
+---
+
+(automad
+  (statement
+    (statement_open)
+    (function)
+    (options
+      (key)
+      (string))
+    (statement_close))
+  (text))
+
 ========
 For Loop
 ========
@@ -220,6 +238,7 @@ Snippet
     (statement_close))
   (statement
     (statement_open)
+    (function)
     (statement_close))
   (text))
 

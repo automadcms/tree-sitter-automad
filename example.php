@@ -7,6 +7,8 @@ Some Comment
 #>
 @{ :name }
 
+<@ Vendor/Package { key: "value" } @>
+
 <# Some Comment #>
 <span title="@{ title }">@{ :runtime }</span>
 

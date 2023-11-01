@@ -121,7 +121,7 @@ module.exports = grammar({
 				$.statement_open,
 				optional('~'),
 				repeat(/\s/),
-				choice($._name, $.keyword, $.include),
+				choice(alias($._name, $.function), $.keyword, $.include),
 				repeat(
 					seq(
 						repeat(/\s/),
