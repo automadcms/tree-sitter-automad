@@ -7,6 +7,7 @@ Some Comment
 #>
 @{ :name }
 
+<@ ../relative-include.php @>
 <@ Vendor/Package { key: "value" } @>
 
 <# Some Comment #>

@@ -549,7 +549,7 @@
     },
     "include": {
       "type": "PATTERN",
-      "value": "[\\w][\\w\\/\\._]*\\.php"
+      "value": "[\\w\\/\\._-]*\\.php"
     },
     "statement": {
       "type": "SEQ",

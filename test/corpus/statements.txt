@@ -2,7 +2,7 @@
 Include
 =======
 
-<@ some/file.php @>
+<@ ../some-file.php @>
 
 ---
 

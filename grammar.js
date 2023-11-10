@@ -33,17 +33,17 @@ module.exports = grammar({
 											repeat(/\s/),
 											',',
 											repeat(/\s/),
-											$._value
-										)
+											$._value,
+										),
 									),
 									repeat(/\s/),
-									')'
-								)
-							)
+									')',
+								),
+							),
 						),
-						$.pipe_math
-					)
-				)
+						$.pipe_math,
+					),
+				),
 			),
 
 		string: () => /"(?:[^"\\\\]|\\\\.)+"|'(?:[^'\\\\]|\\\\.)+'/,
@@ -57,7 +57,7 @@ module.exports = grammar({
 				$.variable_name,
 				repeat($._pipe),
 				repeat(/\s/),
-				$.variable_close
+				$.variable_close,
 			),
 		variable_open: () => '@{',
 		variable_close: () => '}',
@@ -78,7 +78,7 @@ module.exports = grammar({
 				'snippet',
 				'with',
 				'else',
-				'end'
+				'end',
 			),
 
 		negation: () => choice('!', 'not'),
@@ -94,10 +94,10 @@ module.exports = grammar({
 							optional(seq($.negation, repeat(/\s/))),
 							$._value,
 							repeat(/\s/),
-							optional(seq($.operator, repeat(/\s/), $._value))
-						)
-					)
-				)
+							optional(seq($.operator, repeat(/\s/), $._value)),
+						),
+					),
+				),
 			),
 
 		key: () => /[\w_]+/,
@@ -110,11 +110,11 @@ module.exports = grammar({
 					$._keyValue,
 					repeat(seq(repeat(/\s/), ',', repeat(/\s/), $._keyValue)),
 					repeat(/\s/),
-					'}'
-				)
+					'}',
+				),
 			),
 
-		include: () => /[\w][\w\/\._]*\.php/,
+		include: () => /[\w\/\._-]*\.php/,
 
 		statement: ($) =>
 			seq(
@@ -125,12 +125,12 @@ module.exports = grammar({
 				repeat(
 					seq(
 						repeat(/\s/),
-						choice($._name, $.expression, $.keyword, $.options)
-					)
+						choice($._name, $.expression, $.keyword, $.options),
+					),
 				),
 				repeat(/\s/),
 				optional('~'),
-				$.statement_close
+				$.statement_close,
 			),
 		statement_open: () => '<@',
 		statement_close: () => '@>',
