@@ -1128,8 +1128,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == '\n' ||
           lookahead == '\r' ||
           lookahead == ' ') ADVANCE(198);
-      if (lookahead != 0 &&
-          lookahead != '#') ADVANCE(200);
+      if (lookahead != 0) ADVANCE(200);
       END_STATE();
     case 71:
       ACCEPT_TOKEN(ts_builtin_sym_end);
@@ -2011,8 +2010,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == '\n' ||
           lookahead == '\r' ||
           lookahead == ' ') ADVANCE(198);
-      if (lookahead != 0 &&
-          lookahead != '#') ADVANCE(200);
+      if (lookahead != 0) ADVANCE(200);
       END_STATE();
     case 199:
       ACCEPT_TOKEN(sym_text);
@@ -2022,16 +2020,15 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == '\n' ||
           lookahead == '\r' ||
           lookahead == ' ' ||
+          lookahead == '#' ||
           lookahead == '>') ADVANCE(200);
-      if (lookahead != 0 &&
-          lookahead != '#') ADVANCE(199);
+      if (lookahead != 0) ADVANCE(199);
       END_STATE();
     case 200:
       ACCEPT_TOKEN(sym_text);
       if (lookahead == '<') ADVANCE(66);
       if (lookahead == '@') ADVANCE(69);
-      if (lookahead != 0 &&
-          lookahead != '#') ADVANCE(200);
+      if (lookahead != 0) ADVANCE(200);
       END_STATE();
     default:
       return false;
