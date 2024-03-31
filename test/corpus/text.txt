@@ -1,0 +1,14 @@
+====
+Text
+====
+
+<link
+	rel="stylesheet"
+	href="https://cdn/npm/name@1.2.3/index.js"
+/>
+
+---
+
+(automad
+  (text))
+
