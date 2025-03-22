@@ -23,3 +23,16 @@ Text #
 (automad
   (text))
 
+======
+Text PHP
+======
+
+<?php>
+  function();
+?>
+
+---
+
+(automad
+  (text))
+

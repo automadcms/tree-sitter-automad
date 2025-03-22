@@ -17,7 +17,7 @@ Include
 Extension
 =========
 
-<@ Vendor/Package { key: "value" } @>
+<@ Vendor/Package { key: "value", :runtime: "value", ?empty: "" } @>
 
 ---
 
@@ -26,6 +26,10 @@ Extension
     (statement_open)
     (function)
     (options
+      (key)
+      (string)
+      (key)
+      (string)
       (key)
       (string))
     (statement_close))
@@ -42,28 +46,29 @@ For Loop
 ---
 
 (automad
-  (statement
-    (statement_open)
-    (keyword)
-    (expression
-      (variable
-        (variable_open)
-        (variable_name)
-        (variable_close)))
-    (keyword)
-    (expression
-      (number))
-    (statement_close))
-  (text)
-  (variable
-    (variable_open)
-    (variable_name)
-    (variable_close))
-  (text)
-  (statement
-    (statement_open)
-    (keyword)
-    (statement_close))
+  (block
+    (tag_start
+      (statement_open)
+      (keyword)
+      (expression
+        (variable
+          (variable_open)
+          (variable_name)
+          (variable_close)))
+      (keyword)
+      (expression
+        (number))
+      (statement_close))
+    (text)
+    (variable
+      (variable_open)
+      (variable_name)
+      (variable_close))
+    (text)
+    (tag_end
+      (statement_open)
+      (keyword_end)
+      (statement_close)))
   (text))
 
 =============
@@ -79,35 +84,36 @@ Foreach Files
 ---
 
 (automad
-  (statement
-    (statement_open)
-    (keyword)
-    (keyword)
-    (expression
-      (string))
-    (options
-      (key)
-      (number)
-      (key)
-      (number)
-      (key)
-      (boolean))
-    (statement_close))
-  (text)
-  (variable
-    (variable_open)
-    (variable_name)
-    (variable_close))
-  (text)
-  (statement
-    (statement_open)
-    (keyword)
-    (statement_close))
-  (text)
-  (statement
-    (statement_open)
-    (keyword)
-    (statement_close))
+  (block
+    (tag_start
+      (statement_open)
+      (keyword)
+      (keyword)
+      (expression
+        (string))
+      (options
+        (key)
+        (number)
+        (key)
+        (number)
+        (key)
+        (boolean))
+      (statement_close))
+    (text)
+    (variable
+      (variable_open)
+      (variable_name)
+      (variable_close))
+    (text)
+    (tag_else
+      (statement_open)
+      (keyword_else)
+      (statement_close))
+    (text)
+    (tag_end
+      (statement_open)
+      (keyword_end)
+      (statement_close)))
   (text))
 
 ================
@@ -123,27 +129,28 @@ Foreach Pagelist
 ---
 
 (automad
-  (statement
-    (statement_open)
-    (keyword)
-    (keyword)
-    (expression)
-    (statement_close))
-  (text)
-  (variable
-    (variable_open)
-    (variable_name)
-    (variable_close))
-  (text)
-  (statement
-    (statement_open)
-    (keyword)
-    (statement_close))
-  (text)
-  (statement
-    (statement_open)
-    (keyword)
-    (statement_close))
+  (block
+    (tag_start
+      (statement_open)
+      (keyword)
+      (keyword)
+      (expression)
+      (statement_close))
+    (text)
+    (variable
+      (variable_open)
+      (variable_name)
+      (variable_close))
+    (text)
+    (tag_else
+      (statement_open)
+      (keyword_else)
+      (statement_close))
+    (text)
+    (tag_end
+      (statement_open)
+      (keyword_end)
+      (statement_close)))
   (text))
 
 ==========
@@ -159,29 +166,30 @@ Coditional
 ---
 
 (automad
-  (statement
-    (statement_open)
-    (keyword)
-    (expression
-      (variable
-        (variable_open)
-        (variable_name)
-        (pipe_separator)
-        (pipe_function_name)
-        (variable_close))
-      (operator)
-      (string))
-    (statement_close))
-  (text)
-  (statement
-    (statement_open)
-    (keyword)
-    (statement_close))
-  (text)
-  (statement
-    (statement_open)
-    (keyword)
-    (statement_close))
+  (block
+    (tag_start
+      (statement_open)
+      (keyword)
+      (expression
+        (variable
+          (variable_open)
+          (variable_name)
+          (pipe_separator)
+          (pipe_function_name)
+          (variable_close))
+        (operator)
+        (string))
+      (statement_close))
+    (text)
+    (tag_else
+      (statement_open)
+      (keyword_else)
+      (statement_close))
+    (text)
+    (tag_end
+      (statement_open)
+      (keyword_end)
+      (statement_close)))
   (text))
 
 ========
@@ -195,23 +203,24 @@ Negation
 ---
 
 (automad
-  (statement
-    (statement_open)
-    (keyword)
-    (expression
-      (negation)
-      (variable
-        (variable_open)
-        (variable_name)
-        (pipe_separator)
-        (pipe_function_name)
-        (variable_close)))
-    (statement_close))
-  (text)
-  (statement
-    (statement_open)
-    (keyword)
-    (statement_close))
+  (block
+    (tag_start
+      (statement_open)
+      (keyword)
+      (expression
+        (negation)
+        (variable
+          (variable_open)
+          (variable_name)
+          (pipe_separator)
+          (pipe_function_name)
+          (variable_close)))
+      (statement_close))
+    (text)
+    (tag_end
+      (statement_open)
+      (keyword_end)
+      (statement_close)))
   (text))
 
 =======
@@ -227,18 +236,92 @@ Snippet
 ---
 
 (automad
-  (statement
-    (statement_open)
-    (keyword)
-    (statement_close))
-  (text)
-  (statement
-    (statement_open)
-    (keyword)
-    (statement_close))
+  (block
+    (tag_start
+      (statement_open)
+      (keyword)
+      (snippet)
+      (statement_close))
+    (text)
+    (tag_end
+      (statement_open)
+      (keyword_end)
+      (statement_close)))
   (statement
     (statement_open)
     (function)
     (statement_close))
   (text))
 
+======
+Nested
+======
+
+<@ if @{ variable | filter } != 'Hello' @>
+  <@ snippet test @>
+    <span>Content</span>
+  <@ end @>
+<@ else @>
+  False
+<@ end @>
+
+---
+
+(automad
+  (block
+    (tag_start
+      (statement_open)
+      (keyword)
+      (expression
+        (variable
+          (variable_open)
+          (variable_name)
+          (pipe_separator)
+          (pipe_function_name)
+          (variable_close))
+        (operator)
+        (string))
+      (statement_close))
+    (block
+      (tag_start
+        (statement_open)
+        (keyword)
+        (snippet)
+        (statement_close))
+      (text)
+      (tag_end
+        (statement_open)
+        (keyword_end)
+        (statement_close)))
+    (tag_else
+      (statement_open)
+      (keyword_else)
+      (statement_close))
+    (text)
+    (tag_end
+      (statement_open)
+      (keyword_end)
+      (statement_close)))
+  (text))
+
+=====
+Empty
+=====
+
+<@ snippet test @>
+<@ end @>
+
+---
+
+(automad
+  (block
+    (tag_start
+      (statement_open)
+      (keyword)
+      (snippet)
+      (statement_close))
+    (tag_end
+      (statement_open)
+      (keyword_end)
+      (statement_close)))
+  (text))
