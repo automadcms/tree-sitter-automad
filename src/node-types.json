@@ -8,11 +8,58 @@
       "required": true,
       "types": [
         {
+          "type": "block",
+          "named": true
+        },
+        {
           "type": "comment",
           "named": true
         },
         {
           "type": "statement",
+          "named": true
+        },
+        {
+          "type": "text",
+          "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "tag_else",
+          "named": true
+        },
+        {
+          "type": "tag_end",
+          "named": true
+        },
+        {
+          "type": "tag_start",
           "named": true
         },
         {
@@ -136,10 +183,6 @@
       "required": true,
       "types": [
         {
-          "type": "expression",
-          "named": true
-        },
-        {
           "type": "function",
           "named": true
         },
@@ -148,11 +191,88 @@
           "named": true
         },
         {
+          "type": "options",
+          "named": true
+        },
+        {
+          "type": "statement_close",
+          "named": true
+        },
+        {
+          "type": "statement_open",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_else",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword_else",
+          "named": true
+        },
+        {
+          "type": "statement_close",
+          "named": true
+        },
+        {
+          "type": "statement_open",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_end",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword_end",
+          "named": true
+        },
+        {
+          "type": "statement_close",
+          "named": true
+        },
+        {
+          "type": "statement_open",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_start",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
           "type": "keyword",
           "named": true
         },
         {
           "type": "options",
+          "named": true
+        },
+        {
+          "type": "snippet",
           "named": true
         },
         {
@@ -276,15 +396,11 @@
     "named": true
   },
   {
-    "type": "else",
-    "named": false
-  },
-  {
-    "type": "end",
-    "named": false
-  },
-  {
     "type": "filelist",
+    "named": false
+  },
+  {
+    "type": "filters",
     "named": false
   },
   {
@@ -316,6 +432,14 @@
     "named": true
   },
   {
+    "type": "keyword_else",
+    "named": true
+  },
+  {
+    "type": "keyword_end",
+    "named": true
+  },
+  {
     "type": "not",
     "named": false
   },
@@ -340,6 +464,10 @@
     "named": false
   },
   {
+    "type": "snippet",
+    "named": true
+  },
+  {
     "type": "statement_close",
     "named": true
   },
@@ -350,6 +478,10 @@
   {
     "type": "string",
     "named": true
+  },
+  {
+    "type": "tags",
+    "named": false
   },
   {
     "type": "text",
