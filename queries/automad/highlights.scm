@@ -1,14 +1,18 @@
 (
 	[
 		(statement) @label
+		(block) @label
+		(variable) @label
+		(pipe_function_name) @constructor
 		(keyword) @constructor
+		(keyword_else) @constructor
+		(keyword_end) @constructor
 		(expression) @type.builtin
+		(snippet) @type.builtin
 		(include) @type.builtin
 		(function) @type.builtin
-		(comment) @comment
-		(variable) @label
 		(variable_name) @variable.builtin
-		(pipe_function_name) @constructor
+		(comment) @comment
 		(number) @number
 		(key) @field
 		(boolean) @parameter
