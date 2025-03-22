@@ -8,7 +8,7 @@ Some Comment
 @{ :name }
 
 <@ ../relative-include.php @>
-<@ Vendor/Package { key: "value" } @>
+<@ Vendor/Package { key: "value", :runtime: "value" } @>
 
 <# Some Comment #>
 <span title="@{ title }">@{ :runtime }</span>
@@ -50,3 +50,8 @@ Some Comment
   True
 <@ end @>
 
+<@ foreach in pagelist @>
+<div>
+
+</div>
+<@ end @>
