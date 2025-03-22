@@ -5,14 +5,16 @@ module.exports = grammar({
 
 	rules: {
 		automad: ($) =>
-			repeat1(choice($.variable, $.comment, $.text, $.statement)),
+			repeat1(
+				choice($.variable, $.comment, $.statement, $.block, $.text),
+			),
 
 		comment: () => seq('<#', prec.right(repeat(/.|\s/)), '#>'),
 
 		_name: () => /[:?%+]?[a-zA-Z][\w\/_]*/,
 		_value: ($) =>
 			prec.right(choice($.string, $.variable, $.number, $.boolean)),
-		_keyValue: ($) => seq($.key, ':', repeat(/\s/), $._value),
+		_key_value: ($) => seq($.key, ':', repeat(/\s/), $._value),
 		_pipe: ($) =>
 			prec.right(
 				seq(
@@ -46,7 +48,7 @@ module.exports = grammar({
 				),
 			),
 
-		string: () => /"(?:[^"\\\\]|\\\\.)+"|'(?:[^'\\\\]|\\\\.)+'/,
+		string: () => /"(?:[^"\\\\]|\\\\.)*"|'(?:[^'\\\\]|\\\\.)*'/,
 		number: () => /\d+(\.\d+)?/,
 		boolean: () => /(true|false)/,
 
@@ -69,17 +71,10 @@ module.exports = grammar({
 			seq(choice('+', '-', '*', '/'), repeat(/\s/), $.number),
 
 		keyword: () =>
-			choice(
-				'for',
-				'to',
-				'foreach',
-				'in',
-				'if',
-				'snippet',
-				'with',
-				'else',
-				'end',
-			),
+			choice('for', 'to', 'foreach', 'in', 'if', 'snippet', 'with'),
+
+		keyword_else: () => 'else',
+		keyword_end: () => 'end',
 
 		negation: () => choice('!', 'not'),
 		operator: () => /[=<>!]+/,
@@ -90,6 +85,8 @@ module.exports = grammar({
 					choice(
 						'pagelist',
 						'filelist',
+						'tags',
+						'filters',
 						seq(
 							optional(seq($.negation, repeat(/\s/))),
 							$._value,
@@ -100,15 +97,15 @@ module.exports = grammar({
 				),
 			),
 
-		key: () => /[\w_]+/,
+		key: () => /[?:%+]?[\w_]+/,
 
 		options: ($) =>
 			prec.right(
 				seq(
 					'{',
 					repeat(/\s/),
-					$._keyValue,
-					repeat(seq(repeat(/\s/), ',', repeat(/\s/), $._keyValue)),
+					$._key_value,
+					repeat(seq(repeat(/\s/), ',', repeat(/\s/), $._key_value)),
 					repeat(/\s/),
 					'}',
 				),
@@ -116,22 +113,93 @@ module.exports = grammar({
 
 		include: () => /[\w\/\._-]*\.php/,
 
-		statement: ($) =>
+		tag_start: ($) =>
 			seq(
 				$.statement_open,
 				optional('~'),
 				repeat(/\s/),
-				choice(alias($._name, $.function), $.keyword, $.include),
+				choice($.keyword),
 				repeat(
 					seq(
 						repeat(/\s/),
-						choice($._name, $.expression, $.keyword, $.options),
+						choice(
+							alias($._name, $.snippet),
+							$.expression,
+							$.keyword,
+							$.options,
+						),
 					),
 				),
 				repeat(/\s/),
 				optional('~'),
 				$.statement_close,
 			),
+
+		tag_else: ($) =>
+			seq(
+				$.statement_open,
+				optional('~'),
+				repeat(/\s/),
+				$.keyword_else,
+				repeat(/\s/),
+				optional('~'),
+				$.statement_close,
+			),
+
+		tag_end: ($) =>
+			seq(
+				$.statement_open,
+				optional('~'),
+				repeat(/\s/),
+				$.keyword_end,
+				repeat(/\s/),
+				optional('~'),
+				$.statement_close,
+			),
+
+		statement: ($) =>
+			seq(
+				$.statement_open,
+				optional('~'),
+				repeat(/\s/),
+				choice(alias($._name, $.function), $.include),
+				optional(seq(repeat(/\s/), $.options)),
+				repeat(/\s/),
+				optional('~'),
+				$.statement_close,
+			),
+
+		block: ($) =>
+			seq(
+				$.tag_start,
+				optional(
+					seq(
+						repeat1(
+							choice(
+								$.variable,
+								$.comment,
+								$.text,
+								$.statement,
+								$.block,
+							),
+						),
+						$.tag_else,
+					),
+				),
+				optional(
+					repeat1(
+						choice(
+							$.variable,
+							$.comment,
+							$.text,
+							$.statement,
+							$.block,
+						),
+					),
+				),
+				$.tag_end,
+			),
+
 		statement_open: () => '<@',
 		statement_close: () => '@>',
 
