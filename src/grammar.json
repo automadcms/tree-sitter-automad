@@ -972,14 +972,10 @@
     "text": {
       "type": "TOKEN",
       "content": {
-        "type": "PREC",
-        "value": -1,
+        "type": "REPEAT1",
         "content": {
-          "type": "REPEAT1",
-          "content": {
-            "type": "PATTERN",
-            "value": "([^@<]+|@[^\\{]|<[^<#@\\s>]+)"
-          }
+          "type": "PATTERN",
+          "value": "([^@<]+|@[^\\{]|<[^#=@\\s>]+)"
         }
       }
     }
