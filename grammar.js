@@ -203,6 +203,6 @@ module.exports = grammar({
 		statement_open: () => '<@',
 		statement_close: () => '@>',
 
-		text: () => token(prec(-1, repeat1(/([^@<]+|@[^\{]|<[^<#@\s>]+)/))),
+		text: () => token(repeat1(/([^@<]+|@[^\{]|<[^#=@\s>]+)/)),
 	},
 });
