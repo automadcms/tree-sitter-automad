@@ -1,15 +1,5 @@
 (
 	[
-		(variable) @label
-		(pipe_function_name) @constructor
-		(variable_name) @variable.builtin
-		(comment) @comment
-	]
-	(#set! "priority" 120)
-)
-
-(
-	[
 		(statement) @label
 		(block) @label
 		(keyword) @constructor
@@ -19,9 +9,7 @@
 		(snippet) @type.builtin
 		(include) @type.builtin
 		(function) @type.builtin
-		(number) @number
 		(key) @field
-		(boolean) @parameter
 	]
 	(#set! "priority" 0)
 )
@@ -30,3 +18,29 @@
 	(string) @string
 	(#set! "priority" 100)
 )
+
+(
+
+	[
+		(variable) @label
+		(pipe_function_name) @constructor
+		(variable_name) @variable.builtin
+		(number) @number
+		(boolean) @boolean
+		(comment) @comment
+	]
+	(#set! "priority" 120)
+)
+
+(variable
+	(string) @string
+	(#set! "priority" 130)
+)
+
+(
+	[
+		(comment) @comment
+	]
+	(#set! "priority" 140)
+)
+
