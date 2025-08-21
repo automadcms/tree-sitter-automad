@@ -3,10 +3,20 @@ Include
 =======
 
 <@ ../some-file.php @>
+<@ ../some-file.svg @>
+<@~ ../some-file.php ~@>
 
 ---
 
 (automad
+  (statement
+    (statement_open)
+    (include)
+    (statement_close))
+  (statement
+    (statement_open)
+    (include)
+    (statement_close))
   (statement
     (statement_open)
     (include)

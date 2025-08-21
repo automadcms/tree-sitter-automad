@@ -111,13 +111,11 @@ module.exports = grammar({
 				),
 			),
 
-		include: () => /[\w\/\._-]*\.php/,
+		include: () => /[\w\/\._-]*\.\w+/,
 
 		tag_start: ($) =>
 			seq(
 				$.statement_open,
-				optional('~'),
-				repeat(/\s/),
 				choice($.keyword),
 				repeat(
 					seq(
@@ -130,42 +128,19 @@ module.exports = grammar({
 						),
 					),
 				),
-				repeat(/\s/),
-				optional('~'),
 				$.statement_close,
 			),
 
 		tag_else: ($) =>
-			seq(
-				$.statement_open,
-				optional('~'),
-				repeat(/\s/),
-				$.keyword_else,
-				repeat(/\s/),
-				optional('~'),
-				$.statement_close,
-			),
+			seq($.statement_open, $.keyword_else, $.statement_close),
 
-		tag_end: ($) =>
-			seq(
-				$.statement_open,
-				optional('~'),
-				repeat(/\s/),
-				$.keyword_end,
-				repeat(/\s/),
-				optional('~'),
-				$.statement_close,
-			),
+		tag_end: ($) => seq($.statement_open, $.keyword_end, $.statement_close),
 
 		statement: ($) =>
 			seq(
 				$.statement_open,
-				optional('~'),
-				repeat(/\s/),
 				choice(alias($._name, $.function), $.include),
 				optional(seq(repeat(/\s/), $.options)),
-				repeat(/\s/),
-				optional('~'),
 				$.statement_close,
 			),
 
@@ -200,8 +175,8 @@ module.exports = grammar({
 				$.tag_end,
 			),
 
-		statement_open: () => '<@',
-		statement_close: () => '@>',
+		statement_open: () => seq('<@', optional('~'), repeat(/\s/)),
+		statement_close: () => seq(repeat(/\s/), optional('~'), '@>'),
 
 		text: () => token(prec(-1, repeat1(/([^@<]+|@[^\{]|<[^<#=@\s>]+)/))),
 	},
